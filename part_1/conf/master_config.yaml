@@ -1,0 +1,8 @@
+write-kubeconfig-mode: 664
+token: "secret"
+flannel-iface: "eth1"
+#bind-address: "192.168.42.110"
+#node-ip: "192.168.42.110"
+node-name: "adconstaS"
+
+
