@@ -8,7 +8,7 @@ kind: Deployment
     #namespace (Optional)
     #labels = (Optional?) map of key:value (string) to organize scopes
 metadata:
-  name: simple-http-deploy
+  name: bluewhale-deploy
   #labels:
   #  app: hellokubernetes
 #Data about all the PODS
@@ -18,16 +18,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: simple-http-pod
+      app: bluewhale-pod
 #(required) Template = describe the pods 
   template:
     metadata:
       labels:
-        app: simple-http-pod
+        app: bluewhale-pod
 #POD spec
     spec:
       containers:
-      - name: simple-http-container
-        image: strm/helloworld-http:latest
+      - name: bluewhale-container
+        image: hcwxd/blue-whale
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
