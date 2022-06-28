@@ -1,0 +1,30 @@
+
+NAME= "adconstaS"
+CPU= 4
+MEMORY= 2048
+IP= "192.168.42.110"
+
+$script = <<-EOF
+	echo "Hello start of script"
+	curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE=644 \
+	K3S_NODE_NAME=#{NAME} \
+	INSTALL_K3S_EXEC=--bind-address=#{IP} \
+	sh -
+	/usr/local/bin/kubectl apply -f /vagrant/conf
+	echo "End of script - Bye Bye !"
+EOF
+
+Vagrant.configure("2") do | config |
+	config.vm.box = "centos/stream8"
+	config.vm.synced_folder ".", "/vagrant"
+	config.vm.provider "virtualbox" do | vb |
+		vb.name = NAME
+		vb.cpus  = 4
+		vb.memory = MEMORY
+	end
+	config.vm.define "V_Adconsta_S"
+	config.vm.hostname = NAME
+	config.vm.network "private_network", ip: IP
+	config.vm.network "forwarded_port", guest: 80, host: 8080
+	config.vm.provision "shell", inline: $script
+end
