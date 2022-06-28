@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: simple-http-deploy
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: simple-http-app
+    template:
+        metadata:
+            labels:
+                app: simple-http-app
+    spec:
+        containers:
+        - name: simple-http-app
+          image: strm/helloworld-http:latest
+          ports:
+          - containerPort: 8080

@@ -8,7 +8,7 @@ kind: Deployment
     #namespace (Optional)
     #labels = (Optional?) map of key:value (string) to organize scopes
 metadata:
-  name: nginx-deployement
+  name: nginxdemo-deploy
   #labels:
   #  app: hellokubernetes
 #Data about all the PODS
@@ -18,16 +18,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginxhello
+      app: nginxdemo-pod
 #(required) Template = describe the pods 
   template:
     metadata:
       labels:
-        app: nginxhello
+        app: nginxdemo-pod
 #POD spec
     spec:
       containers:
-      - name: nginxdemos
+      - name: nginxdemo-container
         image: nginxdemos/hello:latest
         ports:
         - containerPort: 8080
