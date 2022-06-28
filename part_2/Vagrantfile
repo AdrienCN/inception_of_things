@@ -8,7 +8,7 @@ $script = <<-EOF
 	echo "Hello start of script"
 	curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE=644 \
 	K3S_NODE_NAME=#{NAME} \
-	INSTALL_K3S_EXEC=--bind-address=#{IP} \
+	INSTALL_K3S_EXEC=--flannel-iface=eth1\
 	sh -
 	/usr/local/bin/kubectl apply -f /vagrant/conf
 	echo "End of script - Bye Bye !"

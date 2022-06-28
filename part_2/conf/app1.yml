@@ -1,0 +1,33 @@
+#Version du kubernetesAPI used
+apiVersion: apps/v1
+#type of Kubernetes object (Pods, Service, deployment ..)
+kind: Deployment
+#Data that identifies the OBJECT
+    #name= Objectname
+    #UID (Optional)
+    #namespace (Optional)
+    #labels = (Optional?) map of key:value (string) to organize scopes
+metadata:
+  name: nginx-deployement
+  #labels:
+  #  app: hellokubernetes
+#Data about all the PODS
+#(required) Spec = desired state of the object.
+spec:
+#Replicas = nb of similar pods to create
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxhello
+#(required) Template = describe the pods 
+  template:
+    metadata:
+      labels:
+        app: nginxhello
+#POD spec
+    spec:
+      containers:
+      - name: nginxdemos
+        image: nginxdemos/hello:latest
+        ports:
+        - containerPort: 8080
