@@ -9,7 +9,7 @@ spec:
     ports:
       - protocol: TCP
         port: 80
-        targetPort: 8080
+        targetPort: 80
 ---
 
 
@@ -45,4 +45,4 @@ spec:
       - name: simple-http-container
         image: strm/helloworld-http:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80
