@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: app3-hellokubernets-service
+    name: app3-hellokubernetes-service
 spec:
     selector:
         app: hellokubernetes-pod

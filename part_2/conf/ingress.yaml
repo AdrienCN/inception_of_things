@@ -3,6 +3,11 @@ kind: Ingress
 metadata:
     name: ingress
 spec:
+    defaultBackend:
+        service:
+            name: app3-hellokubernetes-service
+            port:
+                number: 80
     rules:
         - host: app1.com
           http:
