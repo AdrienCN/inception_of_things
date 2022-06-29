@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: nginxdemo-service
+    name: app1-nginxdemo-service
 spec:
     #select pods where 'app:' field matches with this service app field
     selector:
