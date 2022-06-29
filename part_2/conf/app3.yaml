@@ -1,3 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: hellokubernets-service
+spec:
+    selector:
+        app: hellokubernetes-pod
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 8080
+---
+
 #Version du kubernetesAPI used
 apiVersion: apps/v1
 #type of Kubernetes object (Pods, Service, deployment ..)
@@ -8,7 +22,7 @@ kind: Deployment
     #namespace (Optional)
     #labels = (Optional?) map of key:value (string) to organize scopes
 metadata:
-  name: bluewhale-deploy
+  name: hellokubernetes-deploy
   #labels:
   #  app: hellokubernetes
 #Data about all the PODS
@@ -18,16 +32,16 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bluewhale-pod
+      app: hellokubernetes-pod
 #(required) Template = describe the pods 
   template:
     metadata:
       labels:
-        app: bluewhale-pod
+        app: hellokubernetes-pod
 #POD spec
     spec:
       containers:
-      - name: bluewhale-container
-        image: hcwxd/blue-whale
+      - name: hellokubernetes-container
+        image: paulbouwer/hello-kubernetes:1.10
         ports:
-        - containerPort: 3000
+        - containerPort: 8080

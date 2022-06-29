@@ -1,3 +1,22 @@
+---
+#SERVICE START see KUBERNETES REFERENCE SERVICE API
+apiVersion: v1
+kind: Service
+metadata:
+    name: nginxdemo-service
+spec:
+    #select pods where 'app:' field matches with this service app field
+    selector:
+        app: nginxdemo-pod
+    ports:
+      - protocol: TCP
+        # Service listening port
+        port: 80
+        # Listening pod's container port
+        targetPort: 8080
+#SERVICE END
+---
+#DEPLOYEMENT START
 #Version du kubernetesAPI used
 apiVersion: apps/v1
 #type of Kubernetes object (Pods, Service, deployment ..)
@@ -24,10 +43,11 @@ spec:
     metadata:
       labels:
         app: nginxdemo-pod
-#POD spec
+#POD container spec
     spec:
       containers:
       - name: nginxdemo-container
         image: nginxdemos/hello:latest
         ports:
         - containerPort: 8080
+#DEPLOYEMENT END
