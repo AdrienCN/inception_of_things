@@ -15,5 +15,8 @@ echo "creating the ingress"
 sudo kubectl apply -n argocd -f ../conf/argo_install.yaml
 sleep 3
 
+sudo kubectl apply -n argocd -f ../conf/project.yaml
+sleep 3
+
 echo "creating the wil app"
 sudo kubectl apply -f ../conf/application.yaml -n argocd
