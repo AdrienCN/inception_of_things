@@ -4,19 +4,20 @@ sleep 3
 sudo kubectl create namespace argocd
 sudo kubectl create namespace dev
 
-echo "creating the argocd"
-sudo kubectl apply -n argocd -f ../conf/argo_install.yaml 
+echo -e "creating the argocd\n"
+sudo kubectl apply -f ../conf/install.yaml -n argocd
 sleep 3
-
+echo -e "Waiting for pods to be ready\n"
 sudo kubectl wait -n argocd --for=condition=Ready pods --all
 sleep 3
 
-echo "creating the ingress"
-sudo kubectl apply -n argocd -f ../conf/argo_install.yaml
+echo -e "creating the ingress\n"
+sudo kubectl apply -f ../conf/ingress.yaml -n argocd
 sleep 3
 
-sudo kubectl apply -n argocd -f ../conf/project.yaml
+echo -e "creating the project\n"
+sudo kubectl apply -f ../conf/project.yaml -n argocd
 sleep 3
 
-echo "creating the wil app"
+echo -e "creating the wil app\n"
 sudo kubectl apply -f ../conf/application.yaml -n argocd
