@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wil42playground
+  name: wil-playground
 spec:
   project: app-dev
   source:
